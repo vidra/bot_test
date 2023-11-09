@@ -10,11 +10,18 @@ const token = '6136917496:AAHyI3XzIpw2wV3GrQo1BtBfZymqXqoX44Q';
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
 
-bot.on('message', (msg) => {
+bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
+  const text = msg.text;
 
-  // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'Hi, Received your message');
+if(text === '/start') {
+  await bot.sendMessage(chatId, 'Fulfill the form', form{
+    reply_markup: {
+      keyboard: [
+        [{text: 'Form'}]]
+    }
+  })
+}
 });
 // New code
 app.get('/', function (req, res) {
